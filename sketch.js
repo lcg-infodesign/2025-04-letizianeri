@@ -172,7 +172,6 @@ function draw() {
   }
 }
 
-// FUNZIONE GLOBALE mousePressed per click sui vulcani
 function mousePressed() {
   for (let v of volcanoes) {
     let size = map(v.elevation, 0, 6000, 6, 30);
@@ -180,8 +179,10 @@ function mousePressed() {
 
     if (dist(mouseX, mouseY, v.x, v.y) < size / 2) {
       // Apre la pagina di dettaglio con Volcano Number come parametro
-      window.location.href = `volcanodetail.html?id=${v.volcanoNumber}`;
+      const volcanoId = String(v.volcanoNumber).trim(); // assicura stringa pulita
+      window.location.href = `volcanodetail.html?id=${encodeURIComponent(volcanoId)}`;
       break;
     }
   }
 }
+
